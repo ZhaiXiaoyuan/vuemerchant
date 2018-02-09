@@ -1,8 +1,7 @@
-<!--首页-->
+<!--忘记密码-->
 <template>
-    <div class="home">
-   <!--   首页：{{name}}-->
-      <router-view></router-view>
+    <div class="forget-password-page">
+
     </div>
 </template>
 
@@ -21,21 +20,15 @@
         },
         data: function () {
             return {
-              name:null,
+
             }
         },
         computed: {},
         watch: {},
         methods: {
-          test:function () {
-          }
+
         },
         created: function () {
-          console.log('dd:',this.$route);
-          this.name=this.$route.params.name;
-          Vue.api.homePageData().then(function (resp) {
-
-          });
         },
         mounted: function () {
 
@@ -52,6 +45,5 @@
             },
             waitForData: true,*/
         }
-
     };
 </script>

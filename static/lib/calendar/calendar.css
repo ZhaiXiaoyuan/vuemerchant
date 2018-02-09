@@ -1,0 +1,268 @@
+* { margin: 0; padding: 0; }
+body { font-family: "Microsoft Yahei"; font-size: 12px; color: #888; }
+a, a:hover { color: #888; text-decoration: none; }
+ul, li { list-style: none; }
+
+.calendar-title {
+  padding-top: 0.28rem;
+  position: relative;
+ /* height: 1rem;
+  line-height: 1rem;*/
+  overflow: hidden;
+}
+.calendar-title a.title {
+  display: inline-block;
+  font-size: 0.48rem;
+  text-indent: 10px;
+}
+#backToday {
+  display: none;
+  position: absolute;
+  left: 70%;
+  top: 8px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  background-color: rgb(255, 128, 142);
+  font-size: 18px;
+}
+.calendar-title .arrow {
+  text-align: center;
+}
+.calendar-title .arrow span {
+  color: #ddd;
+  font-size: 26px;
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.calendar-title .arrow span:hover {
+  color: #888;
+}
+.calendar-title .arrow-prev {
+  padding: 0rem 0.4rem;
+  margin-left: 0.28rem;
+  float: left;
+}
+.calendar-title .arrow-next {
+  padding: 0rem 0.4rem;
+  margin-right: 0.28rem;
+  float: right;
+}
+.calendar-week,
+.calendar-date {
+  overflow: hidden;
+}
+.calendar-date{
+  padding-top: 0.1rem;
+}
+.calendar-week .item,
+.calendar-date .item {
+  float: left;
+  width: 14%;
+  padding:0.12rem 0.2rem;
+  text-align: center;
+}
+.calendar-week {
+ /* padding-bottom: 4px;*/
+  border-bottom: 1px solid #d5d5d5;
+  font-weight: bold;
+  font-size: 0.32rem;
+}
+.calendar-date {}
+.calendar-date .item {
+  margin-bottom: 0.04rem;
+  cursor: pointer;
+  font-size: 0.32rem;
+  color: rgb(135,135,135);
+}
+.calendar-date .item:hover,
+.calendar-date .item-curMonth:hover {
+  /*background-color: #f0f0f0;*/
+}
+.calendar-date .item-curMonth {
+  color: #333;
+ /* font-weight: bold;*/
+}
+.calendar-date .disabled{
+  opacity: 0.3;
+  pointer-events: none;
+}
+.calendar-date .item-curDay,
+.calendar-date .item-curDay:hover {
+  color:  #3273e3;
+/*  font-weight: bold;*/
+}
+.calendar-date .item-selected,
+.calendar-date .item-selected:hover {
+  color: #fff;
+  background: #3273e3;
+}
+.calendar-date .item-selected.start{
+  border-top-left-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
+}
+.calendar-date .item-selected.end{
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+}
+.calendar-today {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 90px;
+  height: 48px;
+  padding: 6px 10px;
+  background-color: rgb(255, 128, 142);
+  border-radius: 5px;
+}
+.calendar-today .triangle {
+  position: absolute;
+  top: 50%;
+  left: -16px;
+  margin-top: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent rgb(255, 128, 142) transparent transparent;
+}
+.calendar-today p {
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.date-popover-modal {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+.date-popover-modal .hidden{
+  display: none !important;
+}
+.date-popover-modal .modal-mask {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+.date-popover-modal .modal-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 74%;
+  background: #F0EFF5;
+  left: 0px;
+  bottom: 0px;
+}
+.date-popover-modal .modal-header {
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.date-popover-modal .modal-header p{
+  text-align: center !important;
+}
+.date-popover-modal .modal-body .wrapper{
+ /* position: relative;*/
+}
+.date-popover-modal .btn-list {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  border-bottom: 1px solid #d5d5d5;
+  overflow: hidden;
+  background: #fff;
+}
+.date-popover-modal .btn-list .handle-btn {
+  display: none;
+  height: 1.08rem;
+  padding-top: 0.1rem;
+  float: left;
+  width: 50%;
+  text-align: center;
+  line-height: normal;
+}
+.date-popover-modal .btn-list .handle-btn .label-text {
+  font-size: 0.32rem;
+  color: #000;
+}
+.date-popover-modal .btn-list .handle-btn .selected-val {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  font-size: 0.28rem;
+  color: #8a8a8a;
+}
+.date-popover-modal .btn-list .handle-btn .selected-val.active {
+  color: #000;
+}
+.date-popover-modal .btn-list .handle-btn.show {
+  display: inline-block;
+}
+.date-popover-modal .btn-list .handle-btn.active {
+  border-bottom: 1px solid #3273e3;
+}
+.date-popover-modal .btn-list .handle-btn.active .label-text {
+  color: #3273e3;
+}
+.date-popover-modal .modal-body {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+  overflow: auto;
+  background: #fff;
+}
+.date-popover-modal .modal-body .select-panel {
+  display: none;
+}
+.date-popover-modal .modal-body .select-panel.active {
+  display: block !important;
+}
+.date-popover-modal .handle-list{
+  position: absolute;
+  width: 100%;
+  left: 0rem;
+  bottom: 0rem;
+  z-index: 1;
+  text-align: center;
+  overflow: hidden;
+}
+.date-popover-modal .handle-list >div{
+  float: left;
+  height: 0.9rem;
+  width: 50%;
+  line-height: 0.9rem;
+  font-size: 0.32rem;
+  cursor: pointer;
+}
+.date-popover-modal .ok-btn{
+  background: #4184ff;
+  color: #fff;
+}
+.date-popover-modal .cancel-btn{
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  color: #000;
+}
+.date-popover-modal.no-btn .modal-content{
+  height: 65%;
+}
+.date-popover-modal.no-btn .handle-list{
+  display: none;
+}

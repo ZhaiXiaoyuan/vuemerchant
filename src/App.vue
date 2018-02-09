@@ -8,7 +8,6 @@
   @import "less/main";
   [v-cloak] { display: none }
 </style>
-
 <script>
 export default {
   name: 'app',
