@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
+import 'vue2-animate/dist/vue2-animate.min.css'
 import App from './App'
 import router from './router'
 /*import $ from 'jquery'*/

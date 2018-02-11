@@ -1,19 +1,19 @@
 <template>
-  <div class="modal">
-    <div class="mask"></div>
+  <div class="modal" v-if="show" :class="[options.className]">
+    <div class="mask" @click="close()"></div>
     <div class="modal-content">
-      <div class="modal-header">
-        <p class="title">弹窗标题</p>
-      </div>
-      <div class="modal-body">
-        <p>弹窗内容</p>
-        <p>弹窗内容</p>
-        <p>弹窗内容</p>
-      </div>
-      <div class="modal-footer">
-        <div class="handle-btn">取消</div>
-        <div class="handle-btn">确定</div>
-      </div>
+      <slot>
+        <div class="modal-header">
+          <p class="title">{{options.title}}</p>
+        </div>
+        <div class="modal-body" v-html="options.html">
+
+        </div>
+        <div class="modal-footer">
+          <div class="handle-btn" @click="cancel()">取消</div>
+          <div class="handle-btn" @click="ok()">确定</div>
+        </div>
+      </slot>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@
       z-index: 201;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.5);
       top:0rem;
       left: 0rem;
     }
@@ -79,6 +79,14 @@
       }
     }
   }
+  .modal-enter, .modal-leave {
+    opacity: 0;
+  }
+  .modal-enter .modal-content, .modal-leave .modal-content {
+    transition: all 0.5s ease;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 </style>
 <script>
   import Vue from 'vue'
@@ -87,10 +95,24 @@
 
     },
     props:{
-
+      options: {
+        type: Object,
+        default:function () {
+          return {
+            className: '',      /*模态框的className*/
+            title: '温馨提示', //提示标题
+            html: '',   //提示内容
+            yes: '确 定',
+            no: '取 消',
+            ok:null,//确定的回调
+            cancel:null,//取消的回调
+          }
+        }
+      }
     },
     data: function () {
       return {
+        show:true,
       }
     },
     computed: {},
@@ -98,7 +120,20 @@
 
     },
     methods: {
-
+      cancel:function () {
+        this.close();
+        this.options.cancel&&this.options.cancel();
+      },
+      ok:function () {
+        this.close();
+        this.options.ok&&this.options.ok();
+      },
+      close:function () {
+        this.show=false;
+      },
+      open:function () {
+        this.show=true;
+      }
     },
     created: function () {
 

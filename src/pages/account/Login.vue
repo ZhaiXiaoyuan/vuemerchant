@@ -17,7 +17,6 @@
       </p>
       <div class="cm-btn handle-btn login-btn" @click="login()">登录</div>
       <router-link class="cm-btn handle-btn register-btn" to="register">注册</router-link>
-      <modal></modal>
     </div>
 </template>
 
@@ -108,6 +107,10 @@
 
         },
         mounted: function () {
+          this.alert({title:'是大沙东福建省看',html:'<div style="color: red;">的数据分手快乐的积分卡数据库打</div>',btn:'我知道了',ok:function () {
+            console.log(233);
+
+          }});
         },
         route: {
            /* data: function(transition) {

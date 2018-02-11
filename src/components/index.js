@@ -5,6 +5,7 @@
 import CmInput from './CmInput.vue';
 import OperationFeedback from './OperationFeedback';
 import Modal from './Modal';
+import AlertModal from './AlertModal';
 
 /*全局组件注册配置*/
 export default {
@@ -13,9 +14,11 @@ export default {
     Vue.component('CmInput',CmInput);
     Vue.component('OperationFeedback',OperationFeedback);
     Vue.component('Modal',Modal);
+    Vue.component('AlertModal',AlertModal);
 
     /*方法调度方式*/
     let OperationFeedbackConstructor = Vue.extend(OperationFeedback);
+    let AlertModalConstructor=Vue.extend(AlertModal);
     const functionObject={
       /**
        * 操作提示
@@ -112,6 +115,27 @@ export default {
         return{
           setOptions:setOptions
         }
+      },
+      /**
+       * 提示弹窗
+       * @param options
+       */
+      alert:function (options) {
+        options={...{
+          className: 'alert-modal', /*模态框的className*/
+          title: '温馨提示',//提示标题
+          html: '',   //提示内容
+          btn: '确 定',
+          ok:null,//回调
+        },...options};
+        //
+        let parentEle=document.getElementById('app');
+        //
+        let instance=new AlertModalConstructor({
+          data:{options:options}
+        });
+        instance.$mount();
+        parentEle.appendChild(instance.$el);
       }
 
     }
