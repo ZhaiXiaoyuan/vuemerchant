@@ -22,7 +22,20 @@
 
     },
     props:{
-
+      options: {
+        type: Object,
+        default:function () {
+          return {
+            className: '',      /*模态框的className*/
+            title: '温馨提示', //提示标题
+            html: '',   //提示内容
+            yes: '确 定',
+            no: '取 消',
+            ok:null,//确定的回调
+            cancel:null,//取消的回调
+          }
+        }
+      }
     },
     data: function () {
       return {
@@ -49,6 +62,7 @@
 
     },
     mounted: function () {
+      console.log(this.options);
     }
   };
 </script>

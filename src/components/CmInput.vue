@@ -49,7 +49,10 @@
 
     },
     props:{
-      type:String,
+      type:{
+        type:String,
+        default:'text'
+      },
       value:{},
       placeholder:String,
       maxlength:{},

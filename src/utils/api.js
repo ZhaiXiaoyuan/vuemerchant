@@ -4,6 +4,7 @@
 import router from '../router'
 import axios from 'axios'
 
+
 export default {
   install: function (Vue, options) {
     /*添加请求拦截器*/
@@ -14,7 +15,7 @@ export default {
     });
     /*添加响应拦截器*/
     axios.interceptors.response.use(function (response) {
-      return response;
+      return response.data;
     }, function (error) {
       //对于有作登录状态的接口你，未未登录时跳转到登录页
       if(error.response.status==401){
@@ -30,7 +31,7 @@ export default {
         return axios({
           method: 'post',
           url: '/lyy/rest/group/distributor/login',
-          data: params
+          params: params
         });
       },
       //获取首页数据
@@ -38,7 +39,7 @@ export default {
         return axios({
           method: 'post',
           url: '/lyy/rest/group/distributor/homepageData',
-          data: params
+          params: params
         });
       },
     }

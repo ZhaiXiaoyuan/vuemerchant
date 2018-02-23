@@ -131,13 +131,11 @@ export default {
         //
         let parentEle=document.getElementById('app');
         //
-        let instance=new AlertModalConstructor({
-          data:{options:options}
-        });
+        let instance=new AlertModalConstructor({});
+        instance.options=options;
         instance.$mount();
         parentEle.appendChild(instance.$el);
       }
-
     }
     /**/
     Object.assign(Vue,functionObject);

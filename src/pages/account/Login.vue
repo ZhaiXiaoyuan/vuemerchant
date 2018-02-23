@@ -95,22 +95,23 @@
             let hb=this.handleFeedback({
               text:'登录中...'
             });
+            let that=this;
             Vue.api.login({"userName": this.account, "password": md5.hex(this.password)}).then(function (resp) {
-              if(resp.result==0){
-                hd.setOptions({type:'complete','text':'登录成功'});
-                this.router.push('home');
+              if(resp.result==1){
+                that.$cookie.set('account',JSON.stringify(resp.para),3);
+                hb.setOptions({type:'complete','text':'登录成功',duration:0});
+                that.$router.push('home');
+              }else{
+                hb.setOptions({type:'warn','text':resp.description});
               }
             })
-          }
+          },
         },
         created: function () {
 
         },
         mounted: function () {
-          this.alert({title:'是大沙东福建省看',html:'<div style="color: red;">的数据分手快乐的积分卡数据库打</div>',btn:'我知道了',ok:function () {
-            console.log(233);
-
-          }});
+          console.log('sdfs:',this.$cookie.get('account'));
         },
         route: {
            /* data: function(transition) {
@@ -119,8 +120,6 @@
                         return {}
                     }
                 });
-
-
             },
             waitForData: true,*/
         }
