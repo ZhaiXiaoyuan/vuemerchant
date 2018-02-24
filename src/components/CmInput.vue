@@ -16,6 +16,7 @@
     border: none;
     border-radius: 0.08rem;
     font-size: 0.32rem;
+    border-radius: 0rem;
   }
   .clear-btn{
     display: none;
@@ -31,6 +32,7 @@
     right: 0.2rem;
     bottom: 0rem;
     margin: auto;
+    text-align: center;
   }
   .cm-clear-input{
     position: relative;

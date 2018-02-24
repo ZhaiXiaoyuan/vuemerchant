@@ -6,6 +6,8 @@ import CmInput from './CmInput.vue';
 import OperationFeedback from './OperationFeedback';
 import Modal from './Modal';
 import AlertModal from './AlertModal';
+import ConfirmModal from './ConfirmModal';
+import GenCode from './GenCode';
 
 /*全局组件注册配置*/
 export default {
@@ -15,10 +17,13 @@ export default {
     Vue.component('OperationFeedback',OperationFeedback);
     Vue.component('Modal',Modal);
     Vue.component('AlertModal',AlertModal);
+    Vue.component('ConfirmModal',ConfirmModal);
+    Vue.component('GenCode',GenCode);
 
     /*方法调度方式*/
     let OperationFeedbackConstructor = Vue.extend(OperationFeedback);
     let AlertModalConstructor=Vue.extend(AlertModal);
+    let ConfrimModalConstructor=Vue.extend(ConfirmModal);
     const functionObject={
       /**
        * 操作提示
@@ -125,13 +130,35 @@ export default {
           className: 'alert-modal', /*模态框的className*/
           title: '温馨提示',//提示标题
           html: '',   //提示内容
-          btn: '确 定',
+          yes: '确 定',
           ok:null,//回调
         },...options};
         //
         let parentEle=document.getElementById('app');
         //
         let instance=new AlertModalConstructor({});
+        instance.options=options;
+        instance.$mount();
+        parentEle.appendChild(instance.$el);
+      },
+      /**
+       * 确认弹窗
+       * @param options
+       */
+      confirm:function (options) {
+        options={...{
+          className: 'alert-modal', /*模态框的className*/
+          title: '温馨提示',//提示标题
+          html: '',   //提示内容
+          yes: '确 定',
+          no: '取 消',
+          ok:null,//回调
+          cancel:null,//
+        },...options};
+        //
+        let parentEle=document.getElementById('app');
+        //
+        let instance=new ConfrimModalConstructor({});
         instance.options=options;
         instance.$mount();
         parentEle.appendChild(instance.$el);

@@ -42,6 +42,30 @@ export default {
           params: params
         });
       },
+      //获取手机验证码
+      getCode:function (params,url) {
+        return axios({
+          method: 'get',
+          url: url,
+          params: params
+        });
+      },
+      //验证码注册手机验证码
+      checkRegisterCode:function (params) {
+        return axios({
+          method: 'post',
+          url: '/lyy/rest/group/distributor/verifyRegisterCode',
+          params: params
+        });
+      },
+      //注册
+      register:function (params) {
+        return axios({
+          method: 'post',
+          url: '/lyy/rest/group/distributor/register',
+          params: params
+        });
+      }
     }
   },
 

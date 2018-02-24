@@ -56,6 +56,7 @@
     }
     .modal-body{
       padding: 0rem 0.2rem 0.3rem 0.2rem;
+      text-align: center;
       p{
         font-size: 0.28rem;
         color: #666;

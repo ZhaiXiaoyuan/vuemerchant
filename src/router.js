@@ -25,7 +25,7 @@ const routes=[ {
     title:'登录',
   },
 },{
-  path: '/register',
+  path: '/register/:step?',
   name: 'register',
   component: Register,
   meta:{

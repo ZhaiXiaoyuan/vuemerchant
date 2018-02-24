@@ -7,13 +7,14 @@
 
     </div>
     <div class="modal-footer">
-      <div class="handle-btn" @click="ok()">{{options.yes}}</div>
+      <div class="handle-btn" @click="cancelHandle()">{{options.no}}</div>
+      <div class="handle-btn" @click="okHandle()">{{options.yes}}</div>
     </div>
   </modal>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less">
-  .alert-modal{}
+  .confirm-modal{}
 </style>
 <script>
   import Vue from 'vue'
@@ -47,9 +48,13 @@
 
     },
     methods: {
-      ok:function () {
+      okHandle:function () {
         this.close();
         this.options.ok&&this.options.ok();
+      },
+      cancelHandle:function () {
+        this.close();
+        this.options.cancel&&this.options.cancel();
       },
       close:function () {
         this.$refs.modal.close();
@@ -62,7 +67,7 @@
 
     },
     mounted: function () {
-      console.log(this.options);
+
     }
   };
 </script>

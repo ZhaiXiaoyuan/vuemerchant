@@ -111,7 +111,7 @@
 
         },
         mounted: function () {
-          console.log('sdfs:',this.$cookie.get('account'));
+
         },
         route: {
            /* data: function(transition) {
