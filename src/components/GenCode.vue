@@ -29,6 +29,10 @@
 
     },
     props:{
+      type:{
+        type:String,
+        default:'register',
+      },
       phone:{
         type:String,
       },
@@ -39,7 +43,11 @@
     data: function () {
       return {
         time:60,
-        isRequesting:false
+        isRequesting:false,
+        urlObj:{
+          register:'/lyy/rest/group/distributor/getRegisterCode',
+          resetPassword:'/lyy/rest/group/distributor/getForgetCode'
+        }
       }
     },
     computed: {},
@@ -60,7 +68,18 @@
         let hb=this.handleFeedback({
           text:'发送中...'
         });
-        Vue.api.getCode({"phoneNumber": this.phone},this.url).then(function (resp) {
+        let params=null;
+        let method=null;
+        switch (this.type){
+          case 'register':
+            params={"phoneNumber": this.phone};
+            break;
+          case 'resetPassword':
+            params={"phone": this.phone};
+            method='post';
+            break;
+        }
+        Vue.api.getCode(params,this.urlObj[this.type],method).then(function (resp) {
           that.isRequesting=false;
           if(resp.result==1){
             hb.setOptions({type:'complete','text':'发送成功'});

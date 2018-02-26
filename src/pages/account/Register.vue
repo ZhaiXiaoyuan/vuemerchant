@@ -40,39 +40,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" scoped>
-  .block{
-    margin-top: 0.3rem;
-  }
-  .input-row{
-    border-top: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
-    background: #fff;
-    &+.input-row{
-      border-top: none;
-    }
-  }
-  .tips{
-    padding-top: 0.06rem;
-    padding-left: 0.2rem;
-    color: rgba(0,0,0,.8);
-    font-size: 0.28rem;
-  }
-  .code-input{
-    width: 4.5rem;
-  }
-  .btn-wrap{
-    margin-top: 0.5rem;
-    padding: 0rem 0.3rem;
-  }
-  .handle-btn{
-    height: 0.88rem;
-    line-height: 0.88rem;
-    text-align: center;
-    font-size: 0.32rem;
-    color: #fff;
-    border-radius: 0.06rem;
-    background: #4e89ee;
-  }
+  @import "../../less/password-setting.less";
 </style>
 
 <script>
@@ -113,10 +81,9 @@
             }
             let hb=this.handleFeedback({text:'操作中...'});
             Vue.api.checkRegisterCode({"phoneNumber": this.phone, "code": this.code}).then(function (resp) {
-              //临时测试
-              if(true||resp.result==1){
+              if(resp.result==1){
                 hb.setOptions({type:'complete','text':'验证成功',duration:0});
-                that.step=2;
+                that.$router.push({name:'register',params:{step:2}});
                 localStorage.setItem('registerData',JSON.stringify({step:that.step,name:that.name,phone:that.phone}));
               }else if(resp.result == 0){
                 this.confirm({title:'温馨提示',html:'手机号已注册',no:'立即登录',cancel:function () {
@@ -149,6 +116,7 @@
             this.isRequesting=true;
             Vue.api.register(params).then(function (resp) {
               that.isRequesting=false;
+              //
               if(resp.result==1){
                 hb.setOptions({type:'complete','text':'注册成功',duration:0});
                 that.$router.push({name:'home'});
@@ -166,6 +134,9 @@
           if(registerData){
             this.name=registerData.name;
             this.phone=registerData.phone;
+          }
+          if(this.$route.params.step){
+            this.step=this.$route.params.step;
           }
         },
         route: {

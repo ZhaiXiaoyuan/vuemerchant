@@ -32,7 +32,7 @@ const routes=[ {
     title:'商家注册',
   },
 },{
-  path: '/forgetPassword',
+  path: '/forgetPassword/:step?',
   name: 'forgetPassword',
   component: ForgetPassword,
   meta:{

@@ -43,14 +43,15 @@ export default {
         });
       },
       //获取手机验证码
-      getCode:function (params,url) {
+      getCode:function (params,url,method) {
+        method=method?method:'get';
         return axios({
-          method: 'get',
+          method: method,
           url: url,
           params: params
         });
       },
-      //验证码注册手机验证码
+      //验证注册手机验证码
       checkRegisterCode:function (params) {
         return axios({
           method: 'post',
@@ -65,7 +66,15 @@ export default {
           url: '/lyy/rest/group/distributor/register',
           params: params
         });
-      }
+      },
+      //验证重置密码手机验证码
+      checkResetPasswordCode:function (params) {
+        return axios({
+          method: 'post',
+          url: '/lyy/rest/group/distributor/getForgetCode',
+          params: params
+        });
+      },
     }
   },
 
