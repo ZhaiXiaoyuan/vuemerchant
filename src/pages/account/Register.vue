@@ -10,10 +10,10 @@
         </div>
         <div class="block">
           <div class="input-row">
-            <cm-input tel="tel" v-model="phone" placeholder="手机号" maxlength="11" clear="true"></cm-input>
+            <cm-input type="tel" v-model="phone" placeholder="手机号" maxlength="11" clear="true"></cm-input>
           </div>
           <div class="input-row">
-            <cm-input class="code-input" tel="text" v-model="code" placeholder="验证码" maxlength="4" clear="true"></cm-input>
+            <cm-input class="code-input" type="text" v-model="code" placeholder="验证码" maxlength="4" clear="true"></cm-input>
             <gen-code :phone="phone" url="/lyy/rest/group/distributor/getRegisterCode"></gen-code>
           </div>
         </div>
@@ -24,10 +24,10 @@
       <div class="panel" v-if="step==2">
         <div class="block">
           <div class="input-row">
-            <cm-input tel="password" v-model="pwd" placeholder="密码" maxlength="20" clear="true"></cm-input>
+            <cm-input type="password" v-model="pwd" placeholder="密码" maxlength="20" clear="true"></cm-input>
           </div>
           <div class="input-row">
-            <cm-input tel="password" v-model="rePwd" placeholder="再次确认密码" maxlength="20" clear="true"></cm-input>
+            <cm-input type="password" v-model="rePwd" placeholder="再次确认密码" maxlength="20" clear="true"></cm-input>
           </div>
         </div>
         <div class="btn-wrap">
@@ -113,10 +113,11 @@
             }
             let hb=this.handleFeedback({text:'操作中...'});
             Vue.api.checkRegisterCode({"phoneNumber": this.phone, "code": this.code}).then(function (resp) {
-              if(resp.result==1){
+              //临时测试
+              if(true||resp.result==1){
                 hb.setOptions({type:'complete','text':'验证成功',duration:0});
                 that.step=2;
-                that.$router.replace({name:'register', params: { step: that.step }});
+                localStorage.setItem('registerData',JSON.stringify({step:that.step,name:that.name,phone:that.phone}));
               }else if(resp.result == 0){
                 this.confirm({title:'温馨提示',html:'手机号已注册',no:'立即登录',cancel:function () {
                   that.$router.push({name:'login'});
@@ -150,7 +151,7 @@
               that.isRequesting=false;
               if(resp.result==1){
                 hb.setOptions({type:'complete','text':'注册成功',duration:0});
-                that.$router.push('home');
+                that.$router.push({name:'home'});
               }else{
                 hb.setOptions({type:'warn','text':resp.description});
               }
@@ -161,8 +162,11 @@
         },
         mounted: function () {
           let that=this;
-          this.$route.params.step
-          this.step=this.$route.params.step?this.$route.params.step:this.step;
+          let registerData=JSON.parse(localStorage.getItem('registerData'));
+          if(registerData){
+            this.name=registerData.name;
+            this.phone=registerData.phone;
+          }
         },
         route: {
            /* data: function(transition) {

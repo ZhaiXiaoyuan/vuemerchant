@@ -19,7 +19,7 @@ export default {
     }, function (error) {
       //对于有作登录状态的接口你，未未登录时跳转到登录页
       if(error.response.status==401){
-        router.push('login');
+        router.push({name:'login'});
       }
       return Promise.reject(error);
     });

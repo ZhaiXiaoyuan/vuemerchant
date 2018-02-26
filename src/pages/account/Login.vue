@@ -100,7 +100,7 @@
               if(resp.result==1){
                 that.$cookie.set('account',JSON.stringify(resp.para),3);
                 hb.setOptions({type:'complete','text':'登录成功',duration:0});
-                that.$router.push('home');
+                that.$router.push({name:'home'});
               }else{
                 hb.setOptions({type:'warn','text':resp.description});
               }
