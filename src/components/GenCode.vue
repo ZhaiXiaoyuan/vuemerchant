@@ -76,7 +76,7 @@
             break;
           case 'resetPassword':
             params={"phone": this.phone};
-            method='post';
+            method='get';
             break;
         }
         Vue.api.getCode(params,this.urlObj[this.type],method).then(function (resp) {

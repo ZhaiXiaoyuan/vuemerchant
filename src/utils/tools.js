@@ -46,7 +46,25 @@ export default {
         }
         //
         Vue.tools = {
-
+          access:{
+            home:[
+              {id: '#h1000001', name:'header', value: '1000001'},
+              {id: '#1000027', name:'设备管理', value: '1000027'},
+              {id: '#1000010', name:'优惠设置', value: '1000010', group: 'group1'},
+              {id: '#1000001', name:'收益统计', value: '1000001', group: 'group1'},
+              // {id: '#1000029', name:'礼品统计', value: '1000073', group: 'group1'},
+              {id: '#1000029', name:'礼品统计', value: '1000029', group: 'group1'},
+              {id: '#1000007', name:'远程上分', value: '1000007', group: 'group2'},
+              {id: '#1000028', name:'订单查询', value: '1000028', group: 'group2'},
+              //{id: '#1000099', name:'会员管理', value: '1000099', group: 'group2'},//开发
+              //{id: '#p1000099', name:'会员派币', value: '1000099', group: 'group2'}
+              //临时测试
+              {id: '#1000093', name:'会员管理', value: '1000093', group: 'group2'},//测试
+              {id: '#p1000093', name:'会员派币', value: '1000093', group: 'group2'}
+              //{id: '#1000059', name:'会员管理', value: '1000059', group: 'group2'},//生产
+              //{id: '#p1000059', name:'会员派币', value: '1000059', group: 'group2'}
+            ]
+          }
         }
     },
 }

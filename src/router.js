@@ -13,6 +13,9 @@ const routes=[ {
   alias: '/home',
   name: 'home',
   component: Home,
+  meta:{
+    title:'设备管理系统',
+  },
 },{
   path: '/device',
   name: 'device',

@@ -83,6 +83,7 @@
             Vue.api.checkRegisterCode({"phoneNumber": this.phone, "code": this.code}).then(function (resp) {
               if(resp.result==1){
                 hb.setOptions({type:'complete','text':'验证成功',duration:0});
+                that.step=2;
                 that.$router.push({name:'register',params:{step:2}});
                 localStorage.setItem('registerData',JSON.stringify({step:that.step,name:that.name,phone:that.phone}));
               }else if(resp.result == 0){

@@ -69,8 +69,7 @@
             }
             let hb=this.handleFeedback({text:'操作中...'});
             Vue.api.checkResetPasswordCode({"phoneNumber": this.phone, "code": this.code}).then(function (resp) {
-              //临时测试
-              if(true||resp.result==1){
+              if(resp.result==1){
                 hb.setOptions({type:'complete','text':'验证成功',duration:0});
                 that.step=2;
                 that.$router.push({name:'forgetPassword',params:{step:that.step}});

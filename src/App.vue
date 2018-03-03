@@ -9,6 +9,15 @@
   [v-cloak] { display: none }
 </style>
 <script>
+  import Vue from 'vue'
+  /**
+   * 奇技淫巧：在这里显式定义全局变量和最高级的methods，在子组件里面可以直接调用，this.$root.xxxx来访问
+   * */
+  Vue.$rootScope = {
+    access: {
+
+    }
+  }
 export default {
   name: 'app',
   mounted: function () {
