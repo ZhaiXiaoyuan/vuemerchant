@@ -17,6 +17,7 @@
       </p>
       <div class="cm-btn handle-btn login-btn" @click="login()">登录</div>
       <router-link class="cm-btn handle-btn register-btn" to="register">注册</router-link>
+      <div class="cm-btn handle-btn login-btn" @click="test()">临时测试</div>
     </div>
 </template>
 
@@ -106,6 +107,18 @@
               }
             })
           },
+          test:function () {
+            this.alert({
+              title:'温馨提示1',
+              html:'<div>不要葱花、不要香菜</div>',
+              ok:()=>{
+                this.operationFeedback({
+                  type:'warn',
+                  text:'弹窗已关闭'
+                });
+              }
+            })
+          }
         },
         created: function () {
 
