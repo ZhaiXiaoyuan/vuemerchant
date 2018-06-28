@@ -26,6 +26,26 @@ export default {
     let ConfrimModalConstructor=Vue.extend(ConfirmModal);
     const functionObject={
       /**
+       * 提示弹窗
+       * @param options
+       */
+      alert:function (options) {
+        options={...{
+          className: 'alert-modal', /*模态框的className*/
+          title: '温馨提示',//提示标题
+          html: '',   //提示内容
+          yes: '确 定',
+          ok:null,//回调
+        },...options};
+        //
+        let parentEle=document.getElementById('app');
+        //
+        let instance=new AlertModalConstructor({});
+        instance.options=options;
+        instance.$mount();
+        parentEle.appendChild(instance.$el);
+      },
+      /**
        * 操作提示
        * @param options object
        */
@@ -122,26 +142,6 @@ export default {
         }
       },
       /**
-       * 提示弹窗
-       * @param options
-       */
-      alert:function (options) {
-        options={...{
-          className: 'alert-modal', /*模态框的className*/
-          title: '温馨提示',//提示标题
-          html: '',   //提示内容
-          yes: '确 定',
-          ok:null,//回调
-        },...options};
-        //
-        let parentEle=document.getElementById('app');
-        //
-        let instance=new AlertModalConstructor({});
-        instance.options=options;
-        instance.$mount();
-        parentEle.appendChild(instance.$el);
-      },
-      /**
        * 确认弹窗
        * @param options
        */
@@ -165,7 +165,6 @@ export default {
       }
     }
     /**/
-    Object.assign(Vue,functionObject);
     Object.assign(Vue.prototype,functionObject);
   }
 };

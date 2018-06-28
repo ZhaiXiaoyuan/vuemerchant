@@ -131,6 +131,8 @@
       },
       close:function () {
         this.show=false;
+        this.$el.remove();
+        this.$destroy();
       },
       open:function () {
         this.show=true;

@@ -17,7 +17,8 @@
       </p>
       <div class="cm-btn handle-btn login-btn" @click="login()">登录</div>
       <router-link class="cm-btn handle-btn register-btn" to="register">注册</router-link>
-      <div class="cm-btn handle-btn login-btn" @click="test()">临时测试</div>
+      <div class="cm-btn handle-btn login-btn" @click="test()">组件调度示例</div>
+      <span @click="alert({html:'啦啦啦'})">test</span>
     </div>
 </template>
 
@@ -124,7 +125,6 @@
 
         },
         mounted: function () {
-
         },
         route: {
            /* data: function(transition) {
